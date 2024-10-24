@@ -1,0 +1,176 @@
+1.	How to retrieve all the information from the emp table?
+
+     select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7788 SCOTT      ANALYST         7566 13-JUL-85       3000                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         20
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250          0         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 13-JUL-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+2.   How would you retrieve only the list of all employee names and their salaries from emp table? 
+     
+     select ename, sal from emp;
+
+ENAME             SAL
+---------- ----------
+KING             5000
+BLAKE            2850
+CLARK            2450
+JONES            2975
+SCOTT            3000
+FORD             3000
+SMITH             800
+ALLEN            1600
+WARD             1250
+MARTIN           1250
+TURNER           1500
+ADAMS            1100
+JAMES             950
+MILLER           1300
+
+3.  How can you list the employees who are getting a commission fee?
+
+    SQL> select * from emp where comm > 0;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         20
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+
+4. How can you produce a list of names of employees & their dept number whose job is with the word 'SALESMAN'?
+
+    select ename, deptno from emp where job  LIKE '%SALESMAN%';
+
+ENAME          DEPTNO
+---------- ----------
+ALLEN              20
+WARD               30
+MARTIN             30
+TURNER             30
+
+5. How can you retrieve the details of employees with mgr 7839 and 7698 without using OR operator?
+
+   select * from emp where mgr in (7839,7698);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         20
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250          0         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+
+6. How can you produce an ordered list of all employee information based on their names in the emp table? 
+ 
+   select * from emp ORDER by ename;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7876 ADAMS      CLERK           7788 13-JUL-87       1100                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250          0         30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      7788 SCOTT      ANALYST         7566 13-JUL-85       3000                    20
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+
+7. -Display the employee ending with 'R' along with their hiredate information.
+    
+    SQL> select ename, hiredate from emp where ename like '%R';
+
+ENAME      HIREDATE
+---------- ---------
+TURNER     08-SEP-81
+MILLER     23-JAN-82
+
+8.  How to produce the employees in asc order by deptno and desc order by job?
+    
+    SQL> select * from emp order by deptno, job desc;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7876 ADAMS      CLERK           7788 13-JUL-87       1100                    20
+      7788 SCOTT      ANALYST         7566 13-JUL-85       3000                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250          0         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+
+9. How to produce the details of employees who joined before 1981?
+
+   select * from emp where hiredate < '01-JAN-1981';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+
+10. How to produce name, job, sal, dailysal and annualsal from emp table?
+
+    select ename, job, sal, sal/30 "daily sal", sal * 12 as "annualsal" from emp;
+
+ ENAME      JOB              SAL  daily sal  annualsal
+---------- --------- ---------- ---------- ----------
+KING       PRESIDENT       5000 166.666667      60000
+BLAKE      MANAGER         2850         95      34200
+CLARK      MANAGER         2450 81.6666667      29400
+JONES      MANAGER         2975 99.1666667      35700
+SCOTT      ANALYST         3000        100      36000
+FORD       ANALYST         3000        100      36000
+SMITH      CLERK            800 26.6666667       9600
+ALLEN      SALESMAN        1600 53.3333333      19200
+WARD       SALESMAN        1250 41.6666667      15000
+MARTIN     SALESMAN        1250 41.6666667      15000
+TURNER     SALESMAN        1500         50      18000
+ADAMS      CLERK           1100 36.6666667      13200
+JAMES      CLERK            950 31.6666667      11400
+MILLER     CLERK           1300 43.3333333      15600
+
+
+Creating SQL database 
+
+1. Create table emp (
+    empno number(4,0),
+    ename varchar2(10),
+    job varchar2(9),
+    mgr number(4,0),
+    hiredate date,
+    sal number(7,2),
+    comm number(7,2),
+    deptno number(2,0));
+
+2. Insert into emp (empno, ename, job, hiredate, sal, deptno) values(7839, 'KING', 'PRESIDENT', '17-NOV-1981', 5000, 10);
+
+3. Insert into emp (empno, ename, job, mgr, hiredate, sal, comm, deptno) values(7499, 'ALLEN', 'SALESMAN', 7698, '20-FEB-1981', 1600, 300, 30);
+   
+   
+   
